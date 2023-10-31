@@ -8,4 +8,8 @@ export class PostsService {
   async handleCreatePost(post: string) {
     return this.postsRepository.create('teste1', post);
   }
+
+  async handleGetAll() {
+    return this.postsRepository.getAll();
+  }
 }

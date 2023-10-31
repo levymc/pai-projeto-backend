@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { PostsService } from './posts.service';
 
 @Controller('posts')
@@ -7,7 +7,7 @@ export class PostsController {
 
   @Post()
   async createPost(@Body() postData: any) {
-    console.log(postData);
+    // console.log(postData);
     const createdPost = await this.postsService.handleCreatePost(
       postData.content,
     );
@@ -15,5 +15,10 @@ export class PostsController {
       message: 'Post criado com sucesso!',
       createdPost,
     };
+  }
+
+  @Get()
+  async receiveAll() {
+    return await this.postsService.handleGetAll();
   }
 }
