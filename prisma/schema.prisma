@@ -16,6 +16,8 @@ model User {
   login     String
   password  String
   createdAt DateTime @default(now())
+
+  @@map("users")
 }
 
 model Posts {
