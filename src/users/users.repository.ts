@@ -7,6 +7,7 @@ export class UsersRepository {
   constructor(private prisma: PrismaService) {}
 
   async getUserByLoginAndPassword(loginData: loginData) {
+    console.log(loginData);
     return this.prisma.client.user.findFirst({
       where: {
         login: loginData.login,
