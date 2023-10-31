@@ -1,18 +1,19 @@
 import { Controller, Post, Body } from '@nestjs/common';
+import { PostsService } from './posts.service';
 
 @Controller('posts')
 export class PostsController {
-  @Post()
-  async criarPost(@Body() postData: any) {
-    console.log('aqui');
-    // Aqui você pode processar os dados recebidos no corpo da solicitação POST
-    // A variável "postData" conterá os dados enviados no corpo da solicitação
+  constructor(private readonly postsService: PostsService) {}
 
-    // Exemplo de resposta
+  @Post()
+  async createPost(@Body() postData: any) {
     console.log(postData);
+    const createdPost = await this.postsService.handleCreatePost(
+      postData.content,
+    );
     return {
       message: 'Post criado com sucesso!',
-      data: postData,
+      createdPost,
     };
   }
 }
