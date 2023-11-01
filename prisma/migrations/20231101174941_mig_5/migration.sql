@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "sessions" ALTER COLUMN "updatedAt" SET DEFAULT CURRENT_TIMESTAMP;
