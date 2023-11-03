@@ -5,11 +5,18 @@ import { PrismaService } from 'src/configs/prismaConfig/prisma.service';
 export class PostsRepository {
   constructor(private prisma: PrismaService) {}
 
-  async create(title: string, description: string) {
+  async create(
+    title: string,
+    description: string,
+    extractedText: string,
+    img: string,
+  ) {
     return this.prisma.client.posts.create({
       data: {
         title,
         description,
+        extractedText,
+        img,
       },
     });
   }
@@ -19,6 +26,7 @@ export class PostsRepository {
       orderBy: {
         updatedAt: 'desc',
       },
+      take: 6,
     });
   }
 }

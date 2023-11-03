@@ -25,7 +25,7 @@ model Sessions {
   id           Int      @id @default(autoincrement())
   userId       Int
   User         User     @relation(fields: [userId], references: [id])
-  token        String   
+  token        String
   isTokenValid Boolean  @default(false)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @default(now())
@@ -34,14 +34,16 @@ model Sessions {
 }
 
 model Posts {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String
-  img         String?
-  createdAt   DateTime @default(now())
-  createdBy   Int?
-  updatedAt   DateTime @default(now())
-  updatedBy   Int?
+  id            Int      @id @default(autoincrement())
+  title         String
+  description   String
+  extractedText String?
+  img           String?
+  isFixedPost   Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  createdBy     Int?
+  updatedAt     DateTime @default(now())
+  updatedBy     Int?
 
   @@map("posts")
 }
