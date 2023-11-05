@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { postData } from 'src/protocols/types';
 
@@ -19,5 +19,10 @@ export class PostsController {
   @Get()
   async receiveAll() {
     return await this.postsService.handleGetAll();
+  }
+
+  @Get(':id')
+  async receiveOne(@Param('id') id: string) {
+    return await this.postsService.handleGetOne(Number(id));
   }
 }

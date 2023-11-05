@@ -27,4 +27,12 @@ export class UsersRepository {
     ]);
     return result;
   }
+
+  async updateAllTokenToFalse() {
+    return this.prisma.client.sessions.updateMany({
+      data: {
+        isTokenValid: false,
+      },
+    });
+  }
 }

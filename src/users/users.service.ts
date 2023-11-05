@@ -18,6 +18,10 @@ export class UsersService {
     };
   }
 
+  async handleDeactivate() {
+    return this.usersRepository.updateAllTokenToFalse();
+  }
+
   private async checkUser(loginData: loginData): Promise<User> {
     const user =
       await this.usersRepository.getUserByLoginAndPassword(loginData);

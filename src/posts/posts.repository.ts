@@ -29,4 +29,10 @@ export class PostsRepository {
       take: 6,
     });
   }
+
+  async getById(id: number) {
+    return this.prisma.client.posts.findFirst({
+      where: { id },
+    });
+  }
 }

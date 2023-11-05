@@ -9,7 +9,11 @@ export class UsersController {
 
   @Post()
   async signIn(@Body() loginData: loginData) {
-    console.log(loginData);
     return await this.usersService.handleSignIn(loginData);
+  }
+
+  @Post('/disable')
+  async deactivateAllToken() {
+    return await this.usersService.handleDeactivate();
   }
 }

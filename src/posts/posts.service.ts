@@ -15,6 +15,10 @@ export class PostsService {
     return this.postsRepository.getAll();
   }
 
+  async handleGetOne(postId: number) {
+    return this.postsRepository.getById(postId);
+  }
+
   private stripPostHtml(post: string) {
     return post
       .replace(/<[^>]*>/g, '')
@@ -27,6 +31,6 @@ export class PostsService {
     if (imgTagMatch && imgTagMatch.length > 1) {
       imgSrc = imgTagMatch[1];
     }
-    return imgSrc.trim();
+    return imgSrc?.trim();
   }
 }
