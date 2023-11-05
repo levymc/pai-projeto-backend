@@ -1,3 +1,5 @@
+import { SiteConfig } from '@prisma/client';
+
 export type loginData = {
   login: string;
   password: string;
@@ -16,3 +18,5 @@ export type postUpdateImg = {
   id: number;
   img: string;
 };
+
+export type ISiteConfig = Omit<SiteConfig, 'id' | 'updatedAt'>;

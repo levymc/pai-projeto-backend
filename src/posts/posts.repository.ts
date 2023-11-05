@@ -64,7 +64,7 @@ export class PostsRepository {
         orderBy: {
           updatedAt: 'desc',
         },
-        take: 6,
+        take: 9,
       }),
       this.prisma.client.posts.findFirst({
         where: {
