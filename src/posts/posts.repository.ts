@@ -29,7 +29,33 @@ export class PostsRepository {
     });
   }
 
-  async getAll() {
+  async updateFixedPost(id: number) {
+    const [_, updated] = await this.prisma.client.$transaction([
+      this.prisma.client.posts.updateMany({
+        where: {
+          isFixedPost: true,
+        },
+        data: {
+          isFixedPost: false,
+        },
+      }),
+      this.prisma.client.posts.update({
+        where: {
+          id,
+        },
+        data: {
+          isFixedPost: true,
+        },
+      }),
+    ]);
+    return updated;
+  }
+
+  async receiveAll() {
+    return this.prisma.client.posts.findMany({});
+  }
+
+  async getLastSix() {
     const [notFixedPosts, fixedPost] = await this.prisma.client.$transaction([
       this.prisma.client.posts.findMany({
         where: {

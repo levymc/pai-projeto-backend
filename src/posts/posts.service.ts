@@ -15,8 +15,16 @@ export class PostsService {
     return this.postsRepository.updateImg(id, img);
   }
 
-  async handleGetAll() {
-    return this.postsRepository.getAll();
+  async handleUpdateFixedPost({ id }) {
+    return this.postsRepository.updateFixedPost(id);
+  }
+
+  async handleGetLastSix() {
+    return this.postsRepository.getLastSix();
+  }
+
+  async handleReceiveAll() {
+    return this.postsRepository.receiveAll();
   }
 
   async handleGetOne(postId: number) {

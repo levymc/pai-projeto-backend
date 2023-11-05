@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Get, Param, Put } from '@nestjs/common';
 import { PostsService } from './posts.service';
-import { postData, postUpdateImg } from 'src/protocols/types';
+import { postData, postId, postUpdateImg } from 'src/protocols/types';
 
 @Controller('posts')
 export class PostsController {
@@ -21,9 +21,19 @@ export class PostsController {
     return await this.postsService.handleUpdateImg(postUpdateImg);
   }
 
+  @Put('/newFixedPost')
+  async updateFixedPost(@Body() postId: postId) {
+    return await this.postsService.handleUpdateFixedPost(postId);
+  }
+
   @Get()
+  async receiveLastSix() {
+    return await this.postsService.handleGetLastSix();
+  }
+
+  @Get('/all')
   async receiveAll() {
-    return await this.postsService.handleGetAll();
+    return await this.postsService.handleReceiveAll();
   }
 
   @Get(':id')
