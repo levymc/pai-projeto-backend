@@ -1,6 +1,6 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Put } from '@nestjs/common';
 import { PostsService } from './posts.service';
-import { postData } from 'src/protocols/types';
+import { postData, postUpdateImg } from 'src/protocols/types';
 
 @Controller('posts')
 export class PostsController {
@@ -8,12 +8,17 @@ export class PostsController {
 
   @Post()
   async createPost(@Body() postData: postData) {
-    // console.log(postData);
     const createdPost = await this.postsService.handleCreatePost(postData);
     return {
       message: 'Post criado com sucesso!',
       createdPost,
     };
+  }
+
+  @Put()
+  async updateImg(@Body() postUpdateImg: postUpdateImg) {
+    console.log(postUpdateImg);
+    return await this.postsService.handleUpdateImg(postUpdateImg);
   }
 
   @Get()

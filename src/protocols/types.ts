@@ -11,3 +11,8 @@ export type postData = {
 export type postId = {
   id: number;
 };
+
+export type postUpdateImg = {
+  id: number;
+  img: string;
+};

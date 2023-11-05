@@ -7,8 +7,12 @@ export class PostsService {
 
   async handleCreatePost({ title, description }) {
     const extractedText = this.stripPostHtml(description);
-    const img = this.takeImgTag(description);
-    return this.postsRepository.create(title, description, extractedText, img);
+    // const img = this.takeImgTag(description);
+    return this.postsRepository.create(title, description, extractedText, '');
+  }
+
+  async handleUpdateImg({ id, img }) {
+    return this.postsRepository.updateImg(id, img);
   }
 
   async handleGetAll() {
