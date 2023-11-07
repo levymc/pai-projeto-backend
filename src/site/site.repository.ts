@@ -1,8 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import * as dayjs from 'dayjs';
 import { PrismaService } from 'src/configs/prismaConfig/prisma.service';
-import * as utc from 'dayjs/plugin/utc';
-import * as timezone from 'dayjs/plugin/timezone';
 
 @Injectable()
 export class SiteConfigRepository {
@@ -13,17 +10,15 @@ export class SiteConfigRepository {
   }
 
   async updateSiteConfig(title: string) {
-    dayjs.extend(utc);
-    dayjs.extend(timezone);
-    const tz = 'America/Sao_Paulo';
-    const currentDateTimeInBrazil = dayjs().tz(tz).toISOString();
+    const now = new Date();
+    now.setHours(now.getHours() - 3);
     return this.prisma.client.siteConfig.update({
       where: {
         id: 1,
       },
       data: {
         title,
-        updatedAt: currentDateTimeInBrazil,
+        updatedAt: now.toISOString(),
       },
     });
   }
